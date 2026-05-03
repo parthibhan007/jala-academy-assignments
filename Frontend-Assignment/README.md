@@ -12,6 +12,8 @@ It demonstrates core frontend development skills by building multiple pages usin
 * AngularJS
 
 ---
+<img width="1916" height="913" alt="Image" src="https://github.com/user-attachments/assets/6b3fe9bb-7902-41f0-b47a-2832d06fead0" />
+
 
 ## Technologies Used
 
@@ -134,5 +136,8 @@ GitHub: https://github.com/parthibhan007
 ---
 
 ## Status
+<img width="1916" height="913" alt="Image" src="https://github.com/user-attachments/assets/6b3fe9bb-7902-41f0-b47a-2832d06fead0" />
+<img width="1918" height="833" alt="Image" src="https://github.com/user-attachments/assets/08df32f1-7616-4605-b68a-1aa5173e29de" />
+<img width="1918" height="835" alt="Image" src="https://github.com/user-attachments/assets/c1b03eba-67e1-4a6d-9530-b9c81344b73c" />
 
 Completed as part of JALA Academy assignments
