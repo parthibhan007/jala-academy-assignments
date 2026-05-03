@@ -1,18 +1,30 @@
-Frontend Assignment – JALA Academy
-Project Overview
+# Frontend Assignment – JALA Academy
 
-This project contains all the frontend assignments completed as part of the JALA Academy training program.
-It covers core web development technologies including HTML, CSS, JavaScript, and AngularJS.
+## Project Overview
 
-The goal of this project is to demonstrate understanding of frontend concepts by building multiple pages with practical examples.
+This project contains all the frontend assignments completed as part of the **JALA Academy training program**.
 
+It demonstrates core frontend development skills by building multiple pages using:
 
-Technologies Used
-HTML5
-CSS3
-JavaScript (Vanilla JS)
-AngularJS (Basic Concepts)
-Project Structure
+* HTML
+* CSS
+* JavaScript
+* AngularJS
+
+---
+
+## Technologies Used
+
+* HTML5
+* CSS3
+* JavaScript (Vanilla JS)
+* AngularJS (Basic Concepts)
+
+---
+
+## Project Structure
+
+```
 FRONTEND-ASSIGNMENT/
 │
 ├── index.html
@@ -39,55 +51,88 @@ FRONTEND-ASSIGNMENT/
 │   ├── angular_events.html
 │   ├── angular_forms.html
 │   └── angular_routing.html
-Features Implemented
-HTML
-Headings and paragraphs
-Text formatting (bold, italic, strong, emphasis)
-Links and images
-Lists (ordered and unordered)
-Div and span elements
-Forms with different input types
-Semantic HTML5 tags
-CSS
-Styling (colors, fonts, spacing)
-Layout (Grid, table layout)
-Responsive design using media queries
-Hover effects and transitions
-Hero image
-Box model and alignment
-JavaScript
-Variables and data types
-Functions and loops
-DOM manipulation
-Event handling
-Form validation
-Arrays and objects
-Console debugging
-AngularJS
-Expressions and data binding
-Controllers and scope
-Events (ng-click, ng-mousemove)
-Form validation (required, email, custom)
-JSON data display using ng-repeat
-Sorting and filtering
-Routing using ng-route
-How to Run the Project
-Download or clone the repository:
+```
+
+---
+
+## Features Implemented
+
+### HTML
+
+* Headings and paragraphs
+* Text formatting (bold, italic, strong, emphasis)
+* Links and images
+* Lists (ordered and unordered)
+* Div and span elements
+* Forms with multiple input types
+* Semantic HTML5 elements
+
+---
+
+### CSS
+
+* Styling (colors, fonts, spacing)
+* Layout (Grid, table layout)
+* Responsive design using media queries
+* Hover effects and transitions
+* Hero image
+* Box model and alignment
+
+---
+
+### JavaScript
+
+* Variables and data types
+* Functions and loops
+* DOM manipulation
+* Event handling
+* Form validation
+* Arrays and objects
+* Console debugging
+
+---
+
+### AngularJS
+
+* Expressions and data binding
+* Controllers and scope
+* Event handling (ng-click, ng-mousemove)
+* Form validation (required, email, custom)
+* JSON display using ng-repeat
+* Sorting and filtering
+* Routing using ng-route
+
+---
+
+## How to Run the Project
+
+1. Clone the repository:
+
+```
 git clone https://github.com/parthibhan007/jala-academy-assignments
-Open the project folder.
-Open index.html in any browser (Chrome recommended).
+```
 
-No server setup is required.
+2. Open the project folder.
 
-Notes
-This project is built using basic frontend technologies without any frameworks like React or Angular CLI.
-AngularJS is used only for learning purposes.
-All pages are static and run directly in the browser.
-Author
+3. Open `index.html` in your browser.
 
-Parthibhan R
+---
 
+## Notes
+
+* No server setup is required
+* Runs directly in browser
+* AngularJS is used only for learning purposes
+
+---
+
+## Author
+
+**Parthibhan R**
 GitHub: https://github.com/parthibhan007
-Status
 
-Completed as part of JALA Academy assignments.
+---
+
+## Status
+
+Completed as part of JALA Academy assignments
