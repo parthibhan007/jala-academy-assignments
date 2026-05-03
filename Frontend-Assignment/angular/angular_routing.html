@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+    <title>Angular Routing</title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular-route.js"></script>
+
+    <style>
+        .ng-enter {
+            opacity: 0;
+            transition: 0.5s;
+        }
+        .ng-enter-active {
+            opacity: 1;
+        }
+    </style>
+</head>
+
+<body>
+
+<h1>Angular Routing</h1>
+
+<a href="#!/">Home</a>
+<a href="#!/about">About</a>
+
+<div ng-view></div>
+
+<script>
+var app = angular.module("myApp", ["ngRoute"]);
+
+app.config(function($routeProvider) {
+    $routeProvider
+    .when("/", {
+        template: "<h2>Home Page</h2>"
+    })
+    .when("/about", {
+        template: "<h2>About Page</h2>"
+    })
+    .otherwise({
+        template: "<h2>Page not found</h2>"
+    });
+});
+</script>
+
+</body>
+</html>

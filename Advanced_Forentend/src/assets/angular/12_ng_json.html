@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="jsonApp">
+<head>
+  <meta charset="UTF-8" />
+  <title>AngularJS JSON & ng-repeat</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 30px; background: #f4f4f4; color: #333; }
+    h1 { color: #1e4a70; }
+    h2 { color: #2c5f8a; border-bottom: 2px solid #aaccee; padding-bottom: 5px; }
+    .section-card { background: white; padding: 20px; margin: 20px 0; border: 1px solid #ccc; border-radius: 8px; }
+    table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+    th { background: #2c5f8a; color: white; padding: 10px; text-align: left; }
+    td { padding: 8px 10px; border: 1px solid #ddd; }
+    tr.even-row { background: #f0f6ff; }
+    tr.odd-row { background: white; }
+    select, input { padding: 8px; border: 1px solid #ccc; border-radius: 4px; margin-top: 6px; }
+    label { display: inline-block; margin-right: 10px; font-weight: bold; }
+    .output-box { background: #e8f4fc; padding: 12px; border-left: 4px solid #2c5f8a; border-radius: 4px; margin-top: 10px; }
+    pre {
+      background: #1e1e1e; color: #dcdcdc;
+      padding: 15px; border-radius: 6px;
+      font-family: 'Courier New', monospace;
+      font-size: 14px; overflow-x: auto;
+    }
+    .index-badge {
+      display: inline-block;
+      background: #2c5f8a;
+      color: white;
+      padding: 2px 7px;
+      border-radius: 10px;
+      font-size: 12px;
+      margin-right: 6px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>AngularJS JSON & ng-repeat</h1>
+
+  <!-- ng-repeat with $index, $odd, $even -->
+  <div class="section-card" ng-controller="StudentCtrl">
+    <h2>1. JSON Table with ng-repeat, $index, $odd, $even</h2>
+    <pre>
+&lt;tr ng-repeat="s in students"
+    ng-class="{'even-row': $even, 'odd-row': $odd}"&gt;
+  &lt;td&gt;{{ $index + 1 }}&lt;/td&gt;
+  &lt;td&gt;{{ s.name }}&lt;/td&gt;
+  ...
+&lt;/tr&gt;
+    </pre>
+    <table>
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Name</th>
+          <th>Course</th>
+          <th>Score</th>
+          <th>Row Type</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="s in students"
+            ng-class="{'even-row': $even, 'odd-row': $odd}">
+          <td><span class="index-badge">{{ $index + 1 }}</span></td>
+          <td>{{ s.name }}</td>
+          <td>{{ s.course }}</td>
+          <td>{{ s.score }}</td>
+          <td>{{ $odd ? "Odd row" : "Even row" }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Sorting with orderBy filter -->
+  <div class="section-card" ng-controller="SortCtrl">
+    <h2>2. Sorting with Filters</h2>
+    <pre>
+&lt;tr ng-repeat="s in students | orderBy:sortColumn:sortReverse"&gt;
+
+$scope.sortColumn = "name";
+$scope.sortReverse = false;
+    </pre>
+    <label>Sort by:</label>
+    <select ng-model="sortColumn">
+      <option value="name">Name</option>
+      <option value="score">Score</option>
+      <option value="course">Course</option>
+    </select>
+    &nbsp;
+    <label>
+      <input type="checkbox" ng-model="sortReverse" /> Reverse Order
+    </label>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Course</th>
+          <th>Score</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="s in students | orderBy:sortColumn:sortReverse">
+          <td>{{ s.name }}</td>
+          <td>{{ s.course }}</td>
+          <td>{{ s.score }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ng-options vs ng-repeat for dropdowns -->
+  <div class="section-card" ng-controller="OptionCtrl">
+    <h2>3. ng-options vs ng-repeat for Dropdown</h2>
+    <pre>
+&lt;!-- ng-repeat in select --&gt;
+&lt;select&gt;
+  &lt;option ng-repeat="c in courses"&gt;{{ c }}&lt;/option&gt;
+&lt;/select&gt;
+
+&lt;!-- ng-options (preferred for objects) --&gt;
+&lt;select ng-model="selected" ng-options="c for c in courses"&gt;
+&lt;/select&gt;
+    </pre>
+
+    <div style="display:flex; gap: 30px; flex-wrap: wrap;">
+      <div>
+        <strong>Using ng-repeat (inside option):</strong><br/>
+        <select>
+          <option ng-repeat="c in courses">{{ c }}</option>
+        </select>
+      </div>
+      <div>
+        <strong>Using ng-options (cleaner for objects):</strong><br/>
+        <select ng-model="selectedCourse" ng-options="c for c in courses">
+        </select>
+        <div class="output-box" ng-show="selectedCourse">
+          Selected: <strong>{{ selectedCourse }}</strong>
+        </div>
+      </div>
+    </div>
+    <p style="margin-top:12px; font-size:14px;">
+      <strong>Difference:</strong> ng-options binds the full object and is more performant.
+      ng-repeat inside &lt;option&gt; gives string values and adds an empty first option.
+    </p>
+  </div>
+
+  <p><a href="../index.html">← Back to Home</a></p>
+
+  <script>
+    var app = angular.module("jsonApp", []);
+
+    // 1. Student table with $index, $odd, $even
+    app.controller("StudentCtrl", function($scope) {
+      $scope.students = [
+        { name: "Rahul", course: "HTML", score: 90 },
+        { name: "Priya", course: "CSS", score: 85 },
+        { name: "Arjun", course: "JavaScript", score: 78 },
+        { name: "Sneha", course: "AngularJS", score: 92 },
+        { name: "Vikram", course: "Bootstrap", score: 70 }
+      ];
+    });
+
+    // 2. Sorting controller
+    app.controller("SortCtrl", function($scope) {
+      $scope.sortColumn = "name";
+      $scope.sortReverse = false;
+      $scope.students = [
+        { name: "Rahul", course: "HTML", score: 90 },
+        { name: "Priya", course: "CSS", score: 85 },
+        { name: "Arjun", course: "JavaScript", score: 78 },
+        { name: "Sneha", course: "AngularJS", score: 92 },
+        { name: "Vikram", course: "Bootstrap", score: 70 }
+      ];
+    });
+
+    // 3. ng-options vs ng-repeat
+    app.controller("OptionCtrl", function($scope) {
+      $scope.courses = ["HTML", "CSS", "JavaScript", "AngularJS", "Bootstrap", "React"];
+      $scope.selectedCourse = "";
+    });
+  </script>
+
+</body>
+</html>

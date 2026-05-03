@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>CSS Effects</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f4f4;
+      color: #333;
+    }
+
+    h1 { color: #1e4a70; text-align: center; padding: 20px; }
+    h2 { color: #2c5f8a; border-bottom: 2px solid #aaccee; padding-bottom: 5px; margin-bottom: 12px; }
+
+    .section-card {
+      background: white;
+      padding: 20px;
+      margin: 20px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+    }
+
+    /* Box shadow */
+    .box-shadow-demo {
+      background: #d0e8ff;
+      padding: 20px;
+      width: 250px;
+      text-align: center;
+      box-shadow: 4px 4px 12px rgba(0, 0, 0, 0.3);
+      border-radius: 6px;
+      font-weight: bold;
+    }
+
+    /* Image shadow */
+    .img-shadow {
+      box-shadow: 6px 6px 15px rgba(0, 0, 0, 0.4);
+      border-radius: 8px;
+      max-width: 300px;
+    }
+
+    /* Hover effect */
+    .hover-card {
+      display: inline-block;
+      background: #2c5f8a;
+      color: white;
+      padding: 15px 25px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: transform 0.2s, background 0.3s, box-shadow 0.3s;
+      font-weight: bold;
+      font-size: 16px;
+    }
+    .hover-card:hover {
+      background: orange;
+      color: #333;
+      transform: scale(1.05);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    }
+
+    /* CSS Animation */
+    @keyframes slideIn {
+      0% { transform: translateX(-100px); opacity: 0; }
+      100% { transform: translateX(0); opacity: 1; }
+    }
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.1); }
+    }
+    @keyframes colorChange {
+      0% { background-color: #2c5f8a; }
+      50% { background-color: #e06b00; }
+      100% { background-color: #2c5f8a; }
+    }
+
+    .anim-slide {
+      background: #2c5f8a;
+      color: white;
+      padding: 15px;
+      border-radius: 6px;
+      animation-name: slideIn;
+      animation-duration: 1s;
+      animation-delay: 0.2s;
+      animation-iteration-count: 1;
+      animation-fill-mode: both;
+    }
+    .anim-pulse {
+      display: inline-block;
+      background: #e06b00;
+      color: white;
+      padding: 15px 25px;
+      border-radius: 50px;
+      animation-name: pulse;
+      animation-duration: 1.5s;
+      animation-delay: 0s;
+      animation-iteration-count: infinite;
+    }
+    .anim-color {
+      padding: 15px;
+      border-radius: 6px;
+      color: white;
+      font-weight: bold;
+      text-align: center;
+      animation-name: colorChange;
+      animation-duration: 3s;
+      animation-iteration-count: infinite;
+    }
+
+    /* Pagination */
+    .pagination { display: flex; gap: 5px; flex-wrap: wrap; margin-top: 10px; }
+    .pagination a {
+      display: inline-block;
+      padding: 8px 14px;
+      background: #e0e8f8;
+      color: #2c5f8a;
+      border: 1px solid #aaccee;
+      border-radius: 4px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    .pagination a:hover { background: #2c5f8a; color: white; }
+    .pagination a.active { background: #2c5f8a; color: white; }
+
+    /* Position demos */
+    .position-wrapper {
+      position: relative;
+      background: #e8f4fc;
+      height: 150px;
+      border: 2px dashed #2c5f8a;
+      border-radius: 6px;
+    }
+    .pos-static {
+      position: static;
+      background: #b3d4f5;
+      padding: 6px 10px;
+      border-radius: 4px;
+      margin: 5px;
+      display: inline-block;
+    }
+    .pos-relative {
+      position: relative;
+      top: 10px;
+      left: 10px;
+      background: #ffd9a0;
+      padding: 6px 10px;
+      border-radius: 4px;
+      display: inline-block;
+    }
+    .pos-absolute {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: #f5b3b3;
+      padding: 6px 10px;
+      border-radius: 4px;
+    }
+    .pos-sticky-info {
+      position: sticky;
+      top: 0;
+      background: #2c5f8a;
+      color: white;
+      padding: 8px 15px;
+      font-weight: bold;
+      z-index: 100;
+    }
+
+    /* Fixed is demonstrated by the sticky info bar above since fixed would go off screen */
+
+    /* Overflow scroll */
+    .overflow-box {
+      width: 300px;
+      height: 100px;
+      overflow: scroll;
+      border: 2px solid #2c5f8a;
+      padding: 10px;
+      background: #f0f6ff;
+      border-radius: 4px;
+    }
+
+    /* Opacity */
+    .opacity-demo img {
+      max-width: 200px;
+      display: inline-block;
+      margin: 8px;
+    }
+    .opacity-demo img:nth-child(1) { opacity: 1; }
+    .opacity-demo img:nth-child(2) { opacity: 0.6; }
+    .opacity-demo img:nth-child(3) { opacity: 0.3; }
+  </style>
+</head>
+<body>
+
+  <p class="pos-sticky-info">Sticky Header — Scroll to see me stick at the top</p>
+
+  <h1>CSS Effects</h1>
+
+  <!-- Box & Image Shadow -->
+  <div class="section-card">
+    <h2>Box Shadow and Image Shadow</h2>
+    <div style="display:flex; gap: 30px; flex-wrap: wrap; align-items: flex-start;">
+      <div class="box-shadow-demo">This box has a shadow</div>
+      <div>
+        <img class="img-shadow"
+             src="https://images.pexels.com/photos/577585/pexels-photo-577585.jpeg?w=300"
+             alt="Code on screen" />
+        <p style="font-size:13px; color:#666;">Image with box-shadow applied</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Hover Effects -->
+  <div class="section-card">
+    <h2>Hover Effects</h2>
+    <div class="hover-card">Hover Over Me!</div>
+  </div>
+
+  <!-- CSS Animations -->
+  <div class="section-card">
+    <h2>CSS Animations</h2>
+    <div style="margin-bottom:12px;">
+      <p><strong>Slide In:</strong> name=slideIn, duration=1s, delay=0.2s, iteration=1</p>
+      <div class="anim-slide">I slide in from the left!</div>
+    </div>
+    <div style="margin-bottom:12px;">
+      <p><strong>Pulse:</strong> name=pulse, duration=1.5s, delay=0s, iteration=infinite</p>
+      <div class="anim-pulse">Pulsing Forever</div>
+    </div>
+    <div>
+      <p><strong>Color Change:</strong> name=colorChange, duration=3s, iteration=infinite</p>
+      <div class="anim-color">Color Changing Background</div>
+    </div>
+  </div>
+
+  <!-- Pagination -->
+  <div class="section-card">
+    <h2>Pagination Styles</h2>
+    <div class="pagination">
+      <a href="#">&laquo;</a>
+      <a href="#">1</a>
+      <a href="#" class="active">2</a>
+      <a href="#">3</a>
+      <a href="#">4</a>
+      <a href="#">5</a>
+      <a href="#">&raquo;</a>
+    </div>
+  </div>
+
+  <!-- Positions -->
+  <div class="section-card">
+    <h2>CSS Position Properties</h2>
+    <p style="margin-bottom:8px;">The container below shows static, relative, and absolute positioning:</p>
+    <div class="position-wrapper">
+      <span class="pos-static">static</span>
+      <span class="pos-relative">relative (top:10, left:10)</span>
+      <span class="pos-absolute">absolute (top:10, right:10)</span>
+    </div>
+    <p style="margin-top:12px; font-size:14px;">
+      <strong>static:</strong> Default. No special positioning.<br/>
+      <strong>relative:</strong> Positioned relative to itself.<br/>
+      <strong>absolute:</strong> Positioned relative to nearest positioned ancestor.<br/>
+      <strong>fixed:</strong> Stays at the same screen position even when scrolling.<br/>
+      <strong>sticky:</strong> Sticks when scrolled to a threshold (see sticky bar at top).
+    </p>
+  </div>
+
+  <!-- Overflow -->
+  <div class="section-card">
+    <h2>Overflow with Scroll</h2>
+    <div class="overflow-box">
+      <p>This box has overflow: scroll. If the content is too long, scrollbars appear.</p>
+      <p>Line 2: More content here to force scrolling.</p>
+      <p>Line 3: Keep scrolling...</p>
+      <p>Line 4: Even more content!</p>
+      <p>Line 5: You can scroll both ways.</p>
+    </div>
+  </div>
+
+  <!-- Opacity -->
+  <div class="section-card">
+    <h2>Opacity on Images</h2>
+    <div class="opacity-demo">
+      <img src="https://images.pexels.com/photos/270360/pexels-photo-270360.jpeg?w=200" alt="opacity 1.0" />
+      <img src="https://images.pexels.com/photos/270360/pexels-photo-270360.jpeg?w=200" alt="opacity 0.6" />
+      <img src="https://images.pexels.com/photos/270360/pexels-photo-270360.jpeg?w=200" alt="opacity 0.3" />
+    </div>
+    <p style="font-size:13px;">opacity: 1.0 &nbsp;|&nbsp; opacity: 0.6 &nbsp;|&nbsp; opacity: 0.3</p>
+  </div>
+
+  <div style="text-align:center; padding: 20px;">
+    <a href="../index.html" style="color: #2c5f8a; font-weight: bold;">← Back to Home</a>
+  </div>
+
+</body>
+</html>

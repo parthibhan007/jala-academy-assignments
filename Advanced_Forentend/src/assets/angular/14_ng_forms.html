@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="formsApp">
+<head>
+  <meta charset="UTF-8" />
+  <title>AngularJS Forms & Validation</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 30px; background: #f4f4f4; color: #333; }
+    h1 { color: #1e4a70; }
+    h2 { color: #2c5f8a; border-bottom: 2px solid #aaccee; padding-bottom: 5px; }
+    .section-card { background: white; padding: 20px; margin: 20px 0; border: 1px solid #ccc; border-radius: 8px; max-width: 540px; }
+    label { display: block; margin-top: 12px; font-weight: bold; }
+    input[type="text"], input[type="email"], input[type="number"], select, textarea {
+      width: 100%; padding: 8px;
+      border: 1px solid #ccc; border-radius: 4px;
+      box-sizing: border-box; margin-top: 4px;
+    }
+    input.ng-invalid.ng-touched { border-color: red; }
+    input.ng-valid.ng-touched { border-color: green; }
+    .error-msg { color: red; font-size: 13px; margin-top: 3px; }
+    .success-msg { color: green; font-size: 13px; margin-top: 3px; }
+    .radio-group { margin-top: 6px; }
+    .radio-group label { display: inline; font-weight: normal; margin-left: 5px; }
+    .checkbox-group label { display: inline; font-weight: normal; margin-left: 5px; }
+    button {
+      margin-top: 16px; background: #2c5f8a; color: white;
+      padding: 10px 22px; border: none; border-radius: 4px; cursor: pointer;
+    }
+    button:hover { background: #1e4a70; }
+    button:disabled { background: #aaa; cursor: not-allowed; }
+    .output-box { background: #e8f4fc; padding: 12px; border-left: 4px solid #2c5f8a; border-radius: 4px; margin-top: 12px; }
+    pre {
+      background: #1e1e1e; color: #dcdcdc;
+      padding: 15px; border-radius: 6px;
+      font-family: 'Courier New', monospace;
+      font-size: 14px; overflow-x: auto;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>AngularJS Forms & Validation</h1>
+
+  <div class="section-card" ng-controller="FormCtrl">
+    <h2>Registration Form</h2>
+    <pre>
+required, email, minlength, ng-minlength
+myForm.fieldName.$error.required
+myForm.fieldName.$invalid
+    </pre>
+
+    <form name="regForm" ng-submit="submitForm()" novalidate>
+
+      <!-- Name: required + minlength -->
+      <label for="fname">Full Name: <span style="color:red;">*</span></label>
+      <input type="text" id="fname" name="fullName"
+             ng-model="user.fullName"
+             required ng-minlength="3"
+             placeholder="Enter your full name" />
+      <span class="error-msg"
+            ng-show="regForm.fullName.$touched && regForm.fullName.$error.required">
+        Name is required.
+      </span>
+      <span class="error-msg"
+            ng-show="regForm.fullName.$touched && regForm.fullName.$error.minlength">
+        Name must be at least 3 characters.
+      </span>
+
+      <!-- Email: required + email format -->
+      <label for="email">Email: <span style="color:red;">*</span></label>
+      <input type="email" id="email" name="email"
+             ng-model="user.email"
+             required
+             placeholder="you@example.com" />
+      <span class="error-msg"
+            ng-show="regForm.email.$touched && regForm.email.$error.required">
+        Email is required.
+      </span>
+      <span class="error-msg"
+            ng-show="regForm.email.$touched && regForm.email.$error.email">
+        Please enter a valid email address.
+      </span>
+
+      <!-- Age: custom validation (must be 18+) -->
+      <label for="age">Age (must be 18+): <span style="color:red;">*</span></label>
+      <input type="number" id="age" name="age"
+             ng-model="user.age"
+             required ng-min="18" ng-max="100"
+             placeholder="Enter your age" />
+      <span class="error-msg"
+            ng-show="regForm.age.$touched && regForm.age.$error.required">
+        Age is required.
+      </span>
+      <span class="error-msg"
+            ng-show="regForm.age.$touched && (regForm.age.$error.min || regForm.age.$error.max)">
+        Age must be between 18 and 100.
+      </span>
+
+      <!-- Course: selectbox -->
+      <label for="course">Course: <span style="color:red;">*</span></label>
+      <select id="course" name="course"
+              ng-model="user.course" required>
+        <option value="">-- Select a course --</option>
+        <option ng-repeat="c in courses" value="{{ c }}">{{ c }}</option>
+      </select>
+      <span class="error-msg"
+            ng-show="regForm.course.$touched && regForm.course.$error.required">
+        Please select a course.
+      </span>
+
+      <!-- Gender: radio buttons -->
+      <label>Gender: <span style="color:red;">*</span></label>
+      <div class="radio-group">
+        <input type="radio" name="gender" ng-model="user.gender" value="male" id="gMale" required />
+        <label for="gMale">Male</label>
+        &nbsp;&nbsp;
+        <input type="radio" name="gender" ng-model="user.gender" value="female" id="gFemale" />
+        <label for="gFemale">Female</label>
+        &nbsp;&nbsp;
+        <input type="radio" name="gender" ng-model="user.gender" value="other" id="gOther" />
+        <label for="gOther">Other</label>
+      </div>
+
+      <!-- Interests: checkboxes -->
+      <label>Interests:</label>
+      <div class="checkbox-group">
+        <input type="checkbox" id="chkHTML" ng-model="user.interests.html" />
+        <label for="chkHTML">HTML</label>
+        &nbsp;&nbsp;
+        <input type="checkbox" id="chkCSS" ng-model="user.interests.css" />
+        <label for="chkCSS">CSS</label>
+        &nbsp;&nbsp;
+        <input type="checkbox" id="chkJS" ng-model="user.interests.js" />
+        <label for="chkJS">JavaScript</label>
+      </div>
+
+      <!-- Terms: required checkbox -->
+      <div style="margin-top:12px;">
+        <input type="checkbox" id="terms" ng-model="user.agreeTerms" />
+        <label for="terms" style="display:inline; font-weight:normal;">
+          I agree to the terms and conditions
+        </label>
+      </div>
+
+      <button type="submit"
+              ng-disabled="regForm.$invalid || !user.agreeTerms">
+        Submit Registration
+      </button>
+
+      <p style="font-size:13px; color:#666; margin-top:8px;">
+        Form valid: {{ !regForm.$invalid }}, Terms agreed: {{ user.agreeTerms }}
+      </p>
+    </form>
+
+    <div class="output-box" ng-show="submitted">
+      <h3 style="margin-top:0; color:#2a6b2a;">Registration Successful!</h3>
+      <p>Name: <strong>{{ user.fullName }}</strong></p>
+      <p>Email: <strong>{{ user.email }}</strong></p>
+      <p>Age: <strong>{{ user.age }}</strong></p>
+      <p>Course: <strong>{{ user.course }}</strong></p>
+      <p>Gender: <strong>{{ user.gender }}</strong></p>
+    </div>
+  </div>
+
+  <p><a href="../index.html">← Back to Home</a></p>
+
+  <script>
+    var app = angular.module("formsApp", []);
+
+    app.controller("FormCtrl", function($scope) {
+      $scope.courses = ["HTML & CSS", "JavaScript", "AngularJS", "Bootstrap", "Full Stack"];
+
+      $scope.user = {
+        fullName: "",
+        email: "",
+        age: null,
+        course: "",
+        gender: "",
+        interests: { html: false, css: false, js: false },
+        agreeTerms: false
+      };
+
+      $scope.submitted = false;
+
+      $scope.submitForm = function() {
+        if ($scope.regForm.$valid && $scope.user.agreeTerms) {
+          $scope.submitted = true;
+        }
+      };
+    });
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>HTML Basics</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 30px;
+      background-color: #f9f9f9;
+      color: #333;
+    }
+    h1 { color: #2c5f8a; }
+    h2 { color: #3a7abf; border-bottom: 2px solid #ccc; padding-bottom: 4px; }
+    a { color: #2c5f8a; }
+    a:hover { color: orange; text-decoration: underline; }
+    .highlight { background-color: yellow; }
+    nav a { margin-right: 15px; font-weight: bold; }
+    nav { background: #2c5f8a; padding: 10px; }
+    nav a { color: white; text-decoration: none; }
+    nav a:hover { color: orange; }
+    section { background: white; padding: 20px; margin: 20px 0; border: 1px solid #ddd; border-radius: 6px; }
+  </style>
+</head>
+<body>
+
+  <!-- Internal Navigation using anchor links -->
+  <nav>
+    <a href="#headings">Headings</a>
+    <a href="#text">Text Formatting</a>
+    <a href="#links">Links & Images</a>
+    <a href="#lists">Lists</a>
+    <a href="#divspan">Div & Span</a>
+  </nav>
+
+  <h1>HTML Basics</h1>
+  <p>This page demonstrates the basic building blocks of HTML.</p>
+
+  <!-- Section 1: Headings -->
+  <section id="headings">
+    <h2>Headings</h2>
+    <h1>Heading 1</h1>
+    <h2>Heading 2</h2>
+    <h3>Heading 3</h3>
+    <h4>Heading 4</h4>
+    <h5>Heading 5</h5>
+    <h6>Heading 6</h6>
+  </section>
+
+  <!-- Section 2: Paragraphs and Text Formatting -->
+  <section id="text">
+    <h2>Paragraphs & Text Formatting</h2>
+    <p>This is a normal paragraph with some text inside it.</p>
+    <p>This text has <b>bold</b> and <i>italic</i> content.</p>
+    <p>You can also use <strong>strong</strong> and <em>emphasis</em> tags.</p>
+    <p><span class="highlight">This span has a yellow background using CSS.</span></p>
+  </section>
+
+  <!-- Section 3: Links and Images -->
+  <section id="links">
+    <h2>Links and Images</h2>
+    <p><a href="https://www.google.com" target="_blank">Click here to go to Google</a></p>
+    <p>Image from the web (responsive):</p>
+    <img src="https://images.pexels.com/photos/546819/pexels-photo-546819.jpeg?w=400"
+         alt="Coding on laptop"
+         width="400"
+         style="border: 2px solid #2c5f8a; border-radius: 6px;" />
+  </section>
+
+  <!-- Section 4: Lists -->
+  <section id="lists">
+    <h2>Lists</h2>
+
+    <h3>Unordered List</h3>
+    <ul>
+      <li>HTML</li>
+      <li>CSS</li>
+      <li>JavaScript</li>
+      <li>AngularJS</li>
+    </ul>
+
+    <h3>Ordered List</h3>
+    <ol>
+      <li>Learn HTML</li>
+      <li>Learn CSS</li>
+      <li>Learn JavaScript</li>
+      <li>Build a project</li>
+    </ol>
+  </section>
+
+  <!-- Section 5: div and span -->
+  <section id="divspan">
+    <h2>div and span</h2>
+    <p><strong>div</strong> is a block-level element. It takes up the full width.</p>
+    <p><strong>span</strong> is an inline element. It only takes up as much space as needed.</p>
+
+    <div style="background: #d0e8ff; padding: 10px; margin: 10px 0;">
+      This is inside a <strong>div</strong>. It's block-level, so it starts on a new line.
+    </div>
+
+    <p>
+      This sentence has a
+      <span style="color: red; font-weight: bold;">span inside</span>
+      which is inline – it doesn't break the line.
+    </p>
+  </section>
+
+  <p><a href="../index.html">← Back to Home</a></p>
+
+</body>
+</html>

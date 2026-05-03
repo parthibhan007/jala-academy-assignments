@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="basicApp">
+<head>
+  <meta charset="UTF-8" />
+  <title>AngularJS Basics</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 30px; background: #f4f4f4; color: #333; }
+    h1 { color: #1e4a70; }
+    h2 { color: #2c5f8a; border-bottom: 2px solid #aaccee; padding-bottom: 5px; }
+    .section-card { background: white; padding: 20px; margin: 20px 0; border: 1px solid #ccc; border-radius: 8px; }
+    input[type="text"], input[type="number"], select {
+      padding: 8px; border: 1px solid #ccc; border-radius: 4px;
+      width: 220px; margin-top: 6px;
+    }
+    .output-box {
+      background: #e8f4fc;
+      padding: 12px;
+      border-left: 4px solid #2c5f8a;
+      border-radius: 4px;
+      margin-top: 10px;
+      font-size: 16px;
+    }
+    pre {
+      background: #1e1e1e; color: #dcdcdc;
+      padding: 15px; border-radius: 6px;
+      font-family: 'Courier New', monospace;
+      font-size: 14px; overflow-x: auto;
+    }
+    label { display: block; margin-top: 10px; font-weight: bold; }
+  </style>
+</head>
+<body>
+
+  <h1>AngularJS Basics</h1>
+
+  <!-- 1. {{ }} Expressions -->
+  <div class="section-card" ng-controller="ExpressionCtrl">
+    <h2>1. AngularJS Expressions <code>{{ }}</code></h2>
+    <pre>
+&lt;p&gt;{{ "Hello" + " World" }}&lt;/p&gt;
+&lt;p&gt;{{ 10 + 5 }}&lt;/p&gt;
+&lt;p&gt;{{ 100 / 4 }}&lt;/p&gt;
+    </pre>
+    <div class="output-box">
+      <p>String expression: {{ "Hello" + " World" }}</p>
+      <p>Math: 10 + 5 = {{ 10 + 5 }}</p>
+      <p>Division: 100 / 4 = {{ 100 / 4 }}</p>
+      <p>Scope variable: {{ greeting }}</p>
+    </div>
+  </div>
+
+  <!-- 2. ng-model -->
+  <div class="section-card" ng-controller="NgModelCtrl">
+    <h2>2. ng-model – Two-Way Data Binding</h2>
+    <pre>
+&lt;input type="text" ng-model="name" /&gt;
+&lt;p&gt;Hello, {{ name }}!&lt;/p&gt;
+    </pre>
+    <label>Type your name:</label>
+    <input type="text" ng-model="name" placeholder="Type here..." />
+    <div class="output-box">
+      Hello, <strong>{{ name || "stranger" }}</strong>!
+    </div>
+
+    <label style="margin-top:16px;">Enter a number to double:</label>
+    <input type="number" ng-model="num" placeholder="Enter number..." />
+    <div class="output-box">
+      Double of {{ num || 0 }} = {{ (num || 0) * 2 }}
+    </div>
+  </div>
+
+  <!-- 3. Controller and $scope -->
+  <div class="section-card" ng-controller="StudentCtrl">
+    <h2>3. Controller and $scope</h2>
+    <pre>
+app.controller("StudentCtrl", function($scope) {
+  $scope.student = {
+    name: "Priya",
+    course: "B.Tech",
+    year: 3
+  };
+  $scope.showInfo = function() {
+    $scope.message = "Student: " + $scope.student.name;
+  };
+});
+    </pre>
+    <div class="output-box">
+      <p>Name: {{ student.name }}</p>
+      <p>Course: {{ student.course }}</p>
+      <p>Year: {{ student.year }}</p>
+    </div>
+    <button onclick="" ng-click="showInfo()"
+      style="background:#2c5f8a; color:white; padding:8px 18px; border:none; border-radius:4px; cursor:pointer; margin-top:8px;">
+      Show Info
+    </button>
+    <div class="output-box" ng-show="message" style="margin-top:8px; background:#d4f5d4;">
+      {{ message }}
+    </div>
+  </div>
+
+  <p><a href="../index.html">← Back to Home</a></p>
+
+  <script>
+    var app = angular.module("basicApp", []);
+
+    // 1. Expressions controller
+    app.controller("ExpressionCtrl", function($scope) {
+      $scope.greeting = "AngularJS loaded successfully!";
+    });
+
+    // 2. ng-model controller
+    app.controller("NgModelCtrl", function($scope) {
+      $scope.name = "";
+      $scope.num = 0;
+    });
+
+    // 3. Student controller with $scope
+    app.controller("StudentCtrl", function($scope) {
+      $scope.student = {
+        name: "Priya",
+        course: "B.Tech",
+        year: 3
+      };
+      $scope.message = "";
+      $scope.showInfo = function() {
+        $scope.message = "Student loaded: " + $scope.student.name + " | Year: " + $scope.student.year;
+      };
+    });
+  </script>
+
+</body>
+</html>

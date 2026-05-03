@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>HTML5 Semantic Elements</title>
+  <style>
+    * { box-sizing: border-box; }
+    body { font-family: Arial, sans-serif; margin: 0; background: #f4f4f4; color: #333; }
+
+    header {
+      background: #2c5f8a;
+      color: white;
+      padding: 20px 30px;
+    }
+    header hgroup h1 { margin: 0; font-size: 28px; }
+    header hgroup p { margin: 5px 0 0; font-size: 14px; color: #cce4ff; }
+
+    nav {
+      background: #1e4a70;
+      padding: 10px 30px;
+    }
+    nav a { color: white; margin-right: 15px; text-decoration: none; font-weight: bold; }
+    nav a:hover { color: orange; }
+
+    .page-wrapper { display: flex; padding: 20px 30px; gap: 20px; }
+
+    main { flex: 3; }
+    aside { flex: 1; background: white; padding: 15px; border: 1px solid #ddd; border-radius: 6px; align-self: flex-start; }
+
+    section {
+      background: white;
+      padding: 20px;
+      margin-bottom: 20px;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+    }
+    section h2 { color: #2c5f8a; border-bottom: 1px solid #eee; padding-bottom: 6px; }
+
+    article {
+      border: 1px solid #ccc;
+      padding: 15px;
+      border-radius: 4px;
+      margin-top: 10px;
+      background: #fafafa;
+    }
+
+    figure {
+      margin: 10px 0;
+      text-align: center;
+    }
+    figure img { max-width: 100%; border-radius: 6px; border: 2px solid #2c5f8a; }
+    figcaption { font-size: 13px; color: #666; margin-top: 6px; }
+
+    table { border-collapse: collapse; width: 100%; }
+    th { background: #2c5f8a; color: white; padding: 10px; }
+    td { padding: 8px 10px; border: 1px solid #ddd; }
+    tr:nth-child(even) { background: #f0f6ff; }
+
+    mark { background: yellow; padding: 2px 4px; }
+
+    footer {
+      background: #2c5f8a;
+      color: white;
+      text-align: center;
+      padding: 15px;
+      margin-top: 20px;
+    }
+
+    .non-semantic-box { background: #ffe8cc; padding: 10px; margin-top: 10px; border-radius: 4px; }
+    .non-semantic-box span { color: #b85c00; font-weight: bold; }
+  </style>
+</head>
+<body>
+
+  <!-- SEMANTIC: header -->
+  <header>
+    <hgroup>
+      <h1>HTML5 Semantic Elements</h1>
+      <p>Demonstrating both semantic and non-semantic HTML structure</p>
+    </hgroup>
+  </header>
+
+  <!-- SEMANTIC: nav -->
+  <nav>
+    <a href="#semantic">Semantic Elements</a>
+    <a href="#nonsemantic">Non-Semantic</a>
+    <a href="#difference">HTML4 vs HTML5</a>
+    <a href="#table">Table</a>
+    <a href="#form">Form</a>
+  </nav>
+
+  <div class="page-wrapper">
+
+    <!-- SEMANTIC: main -->
+    <main>
+
+      <!-- Non-Semantic Section -->
+      <div id="nonsemantic" class="non-semantic-box">
+        <p><strong>Non-Semantic elements (div and span):</strong></p>
+        <div style="padding: 8px; background: #fff3e0; border: 1px dashed #f59342;">
+          This is a <strong>div</strong> – block-level, no meaning.
+          Inside it, a <span style="color: red;">span (inline)</span> is used just to style text.
+        </div>
+        <p style="margin-top:8px; font-size:13px;">
+          <em>div = block container with no semantic meaning</em><br/>
+          <em>span = inline container with no semantic meaning</em>
+        </p>
+      </div>
+
+      <!-- Semantic elements demo -->
+      <section id="semantic">
+        <h2>Semantic Elements</h2>
+
+        <article>
+          <h3>What are Semantic Elements?</h3>
+          <p>
+            Semantic elements describe <mark>meaning</mark> to both the browser and developer.
+            Examples: &lt;header&gt;, &lt;article&gt;, &lt;footer&gt;, &lt;nav&gt;.
+          </p>
+          <p>Published on: <time datetime="2025-01-15">January 15, 2025</time></p>
+        </article>
+
+        <article>
+          <h3>Figure and Figcaption</h3>
+          <figure>
+            <img src="https://images.pexels.com/photos/1181671/pexels-photo-1181671.jpeg?w=400"
+                 alt="Team working on code" />
+            <figcaption>Developers collaborating on a project</figcaption>
+          </figure>
+        </article>
+      </section>
+
+      <!-- HTML4 vs HTML5 -->
+      <section id="difference">
+        <h2>HTML4 vs HTML5</h2>
+        <table>
+          <tr>
+            <th>Feature</th>
+            <th>HTML4</th>
+            <th>HTML5</th>
+          </tr>
+          <tr>
+            <td>Structure Tags</td>
+            <td>Only &lt;div&gt; and &lt;span&gt;</td>
+            <td>header, nav, section, article, aside, footer</td>
+          </tr>
+          <tr>
+            <td>Multimedia</td>
+            <td>Needed plugins (Flash)</td>
+            <td>Built-in &lt;video&gt; and &lt;audio&gt;</td>
+          </tr>
+          <tr>
+            <td>Form Inputs</td>
+            <td>text, password, etc.</td>
+            <td>email, date, range, color, tel, etc.</td>
+          </tr>
+          <tr>
+            <td>Offline Support</td>
+            <td>Not supported</td>
+            <td>LocalStorage, AppCache</td>
+          </tr>
+        </table>
+      </section>
+
+      <!-- Span vs Div -->
+      <section>
+        <h2>Span vs Div</h2>
+        <p><strong>div:</strong> Block-level. Takes full width. Used to group sections of a page.</p>
+        <p><strong>span:</strong> Inline. Only takes width of content. Used to style small parts of text.</p>
+        <p>Example: The word <span style="color:blue; font-weight:bold;">blue</span> is styled with a span.</p>
+      </section>
+
+      <!-- Table inside semantic structure -->
+      <section id="table">
+        <h2>Table (inside section)</h2>
+        <table>
+          <tr><th>Student</th><th>Subject</th><th>Score</th></tr>
+          <tr><td>Rahul</td><td>HTML</td><td>90</td></tr>
+          <tr><td>Priya</td><td>CSS</td><td>85</td></tr>
+          <tr><td>Arjun</td><td>JavaScript</td><td>78</td></tr>
+        </table>
+      </section>
+
+      <!-- Form inside semantic structure -->
+      <section id="form">
+        <h2>Form (inside section)</h2>
+        <form action="#" method="get">
+          <label>Name: <input type="text" name="name" required style="padding:6px; border:1px solid #ccc; border-radius:4px;" /></label>
+          <br/><br/>
+          <label>Email: <input type="email" name="email" required style="padding:6px; border:1px solid #ccc; border-radius:4px;" /></label>
+          <br/><br/>
+          <input type="submit" value="Submit"
+            style="background:#2c5f8a; color:white; padding:8px 18px; border:none; border-radius:4px; cursor:pointer;" />
+        </form>
+      </section>
+
+    </main>
+
+    <!-- SEMANTIC: aside -->
+    <aside>
+      <h3>Quick Reference</h3>
+      <ul>
+        <li><strong>header</strong> – top section</li>
+        <li><strong>nav</strong> – navigation links</li>
+        <li><strong>main</strong> – main content</li>
+        <li><strong>section</strong> – grouped content</li>
+        <li><strong>article</strong> – standalone content</li>
+        <li><strong>aside</strong> – sidebar</li>
+        <li><strong>footer</strong> – bottom section</li>
+        <li><strong>figure</strong> – image/diagram</li>
+        <li><strong>figcaption</strong> – caption</li>
+        <li><strong>mark</strong> – highlighted text</li>
+        <li><strong>time</strong> – date/time</li>
+        <li><strong>hgroup</strong> – heading group</li>
+      </ul>
+    </aside>
+
+  </div>
+
+  <!-- SEMANTIC: footer -->
+  <footer>
+    <p>&copy; 2025 Frontend Assignment | HTML5 Semantic Page</p>
+    <p><a href="../index.html" style="color: #cce4ff;">← Back to Home</a></p>
+  </footer>
+
+</body>
+</html>

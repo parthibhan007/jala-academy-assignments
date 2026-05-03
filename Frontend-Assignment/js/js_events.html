@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>JS Events</title>
+</head>
+
+<body>
+
+<h1>JavaScript Events</h1>
+
+<button onclick="showTime()">Show Time</button>
+
+<br><br>
+
+<form onsubmit="return validateForm()">
+    Name: <input type="text" id="name">
+    <input type="submit">
+</form>
+
+<br>
+
+<button onclick="setCookie()">Set Cookie</button>
+<button onclick="getCookie()">Get Cookie</button>
+
+<script>
+
+function showTime() {
+    var d = new Date();
+    alert(d);
+}
+
+function validateForm() {
+    var name = document.getElementById("name").value;
+    if(name == "") {
+        alert("Name cannot be empty");
+        return false;
+    }
+    return true;
+}
+
+function setCookie() {
+    document.cookie = "username=Parthi";
+}
+
+function getCookie() {
+    alert(document.cookie);
+}
+
+var student = {
+    name: "Arun",
+    age: 21
+};
+
+console.log(student.name);
+
+</script>
+
+</body>
+</html>

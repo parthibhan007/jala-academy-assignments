@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>JavaScript Events</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 30px; background: #f4f4f4; color: #333; }
+    h1 { color: #1e4a70; }
+    h2 { color: #2c5f8a; border-bottom: 2px solid #aaccee; padding-bottom: 5px; }
+    .section-card { background: white; padding: 20px; margin: 20px 0; border: 1px solid #ccc; border-radius: 8px; }
+    pre {
+      background: #1e1e1e;
+      color: #dcdcdc;
+      padding: 15px;
+      border-radius: 6px;
+      font-family: 'Courier New', monospace;
+      font-size: 14px;
+      overflow-x: auto;
+    }
+    .output {
+      background: #e8f4fc;
+      padding: 12px;
+      border-left: 4px solid #2c5f8a;
+      border-radius: 4px;
+      margin-top: 10px;
+      font-family: 'Courier New', monospace;
+      min-height: 40px;
+    }
+    button {
+      background: #2c5f8a;
+      color: white;
+      padding: 8px 18px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      margin: 6px 4px 0 0;
+    }
+    button:hover { background: #1e4a70; }
+    input[type="text"] {
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      width: 250px;
+    }
+    .error { color: red; font-size: 14px; margin-top: 6px; }
+    .success { color: green; font-size: 14px; margin-top: 6px; }
+  </style>
+</head>
+<body>
+
+  <h1>JavaScript Events</h1>
+
+  <!-- 1. Event Listener: Date and Time -->
+  <div class="section-card">
+    <h2>1. addEventListener – Show Date & Time</h2>
+    <pre>
+document.getElementById("dateBtn").addEventListener("click", function() {
+  var now = new Date();
+  document.getElementById("dateOutput").textContent = now.toString();
+});
+    </pre>
+    <button id="dateBtn">Show Current Date & Time</button>
+    <div class="output" id="dateOutput">Click the button to see the current date and time.</div>
+  </div>
+
+  <!-- 2. Form Validation -->
+  <div class="section-card">
+    <h2>2. Form Validation – Textbox must not be empty</h2>
+    <form onsubmit="return validateForm()" id="myForm">
+      <input type="text" id="nameField" placeholder="Enter your name" />
+      <button type="submit">Submit</button>
+      <p id="formMessage"></p>
+    </form>
+    <div class="output" id="formOutput"></div>
+  </div>
+
+  <!-- 3. console.log debugging -->
+  <div class="section-card">
+    <h2>3. console.log() for Debugging</h2>
+    <p>Open browser DevTools (F12) → Console to see the output.</p>
+    <pre>
+var age = 25;
+console.log("User age is:", age);
+
+var arr = [1, 2, 3];
+console.log("Array contents:", arr);
+
+console.error("This is an error message");
+console.warn("This is a warning");
+    </pre>
+    <button onclick="doConsoleLog()">Run console.log Demo</button>
+    <div class="output" id="consoleOutput"></div>
+  </div>
+
+  <!-- 4. Cookies -->
+  <div class="section-card">
+    <h2>4. Cookies – Set, Get, Check</h2>
+    <pre>
+// Set a cookie
+function setCookie(name, value, days) {
+  var expires = new Date();
+  expires.setTime(expires.getTime() + (days * 24 * 60 * 60 * 1000));
+  document.cookie = name + "=" + value + ";expires=" + expires.toUTCString();
+}
+
+// Get a cookie
+function getCookie(name) {
+  var cookies = document.cookie.split("; ");
+  for (var i = 0; i &lt; cookies.length; i++) {
+    var parts = cookies[i].split("=");
+    if (parts[0] === name) return parts[1];
+  }
+  return null;
+}
+
+// Check a cookie
+function checkCookie(name) {
+  return getCookie(name) !== null;
+}
+    </pre>
+    <button onclick="setCookieDemo()">Set Cookie</button>
+    <button onclick="getCookieDemo()">Get Cookie</button>
+    <button onclick="checkCookieDemo()">Check Cookie</button>
+    <div class="output" id="cookieOutput">Click buttons above to manage cookies.</div>
+  </div>
+
+  <!-- 5. JSON Object + Dot Notation -->
+  <div class="section-card">
+    <h2>5. JSON Object & Dot Notation</h2>
+    <pre>
+var student = {
+  "name": "Rahul",
+  "age": 21,
+  "course": "B.Tech",
+  "grades": { "html": 90, "css": 85, "js": 78 }
+};
+
+// Access using dot notation
+console.log(student.name);
+console.log(student.grades.html);
+    </pre>
+    <button onclick="showJSON()">Show JSON Access</button>
+    <div class="output" id="jsonOutput"></div>
+  </div>
+
+  <p><a href="../index.html">← Back to Home</a></p>
+
+  <script>
+    // 1. addEventListener for current date/time
+    document.getElementById("dateBtn").addEventListener("click", function() {
+      var now = new Date();
+      document.getElementById("dateOutput").textContent = now.toString();
+      console.log("Date button clicked at:", now);
+    });
+
+    // 2. Form Validation
+    function validateForm() {
+      var name = document.getElementById("nameField").value;
+      var msg = document.getElementById("formMessage");
+      var output = document.getElementById("formOutput");
+
+      if (name.trim() === "") {
+        msg.innerHTML = '<span style="color:red;">Error: Name cannot be empty!</span>';
+        console.log("Validation failed: empty field");
+        return false; // prevent form submit
+      } else {
+        msg.innerHTML = '<span style="color:green;">Form submitted! Name: ' + name + '</span>';
+        output.textContent = "Submitted name: " + name;
+        console.log("Form submitted with name:", name);
+        return false; // prevent page reload for demo
+      }
+    }
+
+    // 3. console.log debugging
+    function doConsoleLog() {
+      var age = 25;
+      var arr = [1, 2, 3];
+      console.log("User age is:", age);
+      console.log("Array contents:", arr);
+      console.error("This is an error message");
+      console.warn("This is a warning");
+      document.getElementById("consoleOutput").textContent =
+        "Check the browser console (F12) to see log, error, and warn output.";
+    }
+
+    // 4. Cookies
+    function setCookie(name, value, days) {
+      var expires = new Date();
+      expires.setTime(expires.getTime() + (days * 24 * 60 * 60 * 1000));
+      document.cookie = name + "=" + value + ";expires=" + expires.toUTCString() + ";path=/";
+    }
+
+    function getCookie(name) {
+      var cookies = document.cookie.split("; ");
+      for (var i = 0; i < cookies.length; i++) {
+        var parts = cookies[i].split("=");
+        if (parts[0] === name) return parts[1];
+      }
+      return null;
+    }
+
+    function checkCookie(name) {
+      return getCookie(name) !== null;
+    }
+
+    function setCookieDemo() {
+      setCookie("username", "Alice", 1);
+      document.getElementById("cookieOutput").textContent = "Cookie set: username = Alice (expires in 1 day)";
+    }
+
+    function getCookieDemo() {
+      var val = getCookie("username");
+      document.getElementById("cookieOutput").textContent =
+        val ? "Got cookie: username = " + val : "Cookie not found. Click 'Set Cookie' first.";
+    }
+
+    function checkCookieDemo() {
+      var exists = checkCookie("username");
+      document.getElementById("cookieOutput").textContent =
+        exists ? "Cookie 'username' EXISTS in the browser." : "Cookie 'username' does NOT exist.";
+    }
+
+    // 5. JSON + dot notation
+    function showJSON() {
+      var student = {
+        "name": "Rahul",
+        "age": 21,
+        "course": "B.Tech",
+        "grades": { "html": 90, "css": 85, "js": 78 }
+      };
+
+      var output = "student.name = " + student.name + "\n";
+      output += "student.age = " + student.age + "\n";
+      output += "student.course = " + student.course + "\n";
+      output += "student.grades.html = " + student.grades.html + "\n";
+      output += "student.grades.css = " + student.grades.css + "\n";
+      output += "student.grades.js = " + student.grades.js;
+
+      document.getElementById("jsonOutput").textContent = output;
+      console.log("Student object:", student);
+    }
+  </script>
+</body>
+</html>

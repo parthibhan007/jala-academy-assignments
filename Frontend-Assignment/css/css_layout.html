@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>CSS Layout</title>
+    <style>
+        .grid {
+            display: grid;
+            grid-template-columns: auto auto auto;
+            gap: 10px;
+        }
+
+        .grid div {
+            background: lightgreen;
+            padding: 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+<h1>CSS Layout</h1>
+
+<div class="grid">
+    <div>1</div>
+    <div>2</div>
+    <div>3</div>
+</div>
+
+<h2>List Style</h2>
+<ul style="list-style-type:square;">
+    <li>Item 1</li>
+    <li>Item 2</li>
+</ul>
+
+<h2>Table Layout</h2>
+
+<table border="1" style="table-layout:fixed; width:200px;">
+<tr><td>Fixed</td><td>Layout</td></tr>
+</table>
+
+<br>
+
+<table border="1" style="table-layout:auto; width:200px;">
+<tr><td>Auto</td><td>Layout</td></tr>
+</table>
+
+<h2>Hero Image</h2>
+<div style="height:200px; background:url('https://via.placeholder.com/800x200'); background-size:cover;">
+</div>
+
+<h2>Media Query</h2>
+<p>Resize screen to see background change</p>
+
+<style>
+@media screen and (max-width:600px) {
+    body {
+        background-color: lightyellow;
+    }
+}
+</style>
+
+</body>
+</html>

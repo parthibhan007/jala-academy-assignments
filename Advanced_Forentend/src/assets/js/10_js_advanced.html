@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>JavaScript Advanced</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 30px; background: #f4f4f4; color: #333; }
+    h1 { color: #1e4a70; }
+    h2 { color: #2c5f8a; border-bottom: 2px solid #aaccee; padding-bottom: 5px; }
+    .section-card { background: white; padding: 20px; margin: 20px 0; border: 1px solid #ccc; border-radius: 8px; }
+    pre {
+      background: #1e1e1e;
+      color: #dcdcdc;
+      padding: 15px;
+      border-radius: 6px;
+      font-family: 'Courier New', monospace;
+      font-size: 14px;
+      overflow-x: auto;
+    }
+    .output {
+      background: #e8f4fc;
+      padding: 12px;
+      border-left: 4px solid #2c5f8a;
+      border-radius: 4px;
+      margin-top: 10px;
+      font-family: 'Courier New', monospace;
+      white-space: pre-line;
+      min-height: 40px;
+    }
+    button {
+      background: #2c5f8a;
+      color: white;
+      padding: 8px 18px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      margin-top: 8px;
+    }
+    button:hover { background: #1e4a70; }
+  </style>
+</head>
+<body>
+
+  <h1>JavaScript Advanced</h1>
+
+  <!-- 1. this keyword -->
+  <div class="section-card">
+    <h2>1. The <code>this</code> Keyword</h2>
+    <pre>
+function Person(name, age) {
+  this.name = name;
+  this.age = age;
+  this.greet = function() {
+    return "Hi, I am " + this.name + " and I am " + this.age + " years old.";
+  };
+}
+
+var p = new Person("Alice", 22);
+p.greet(); // 'this' refers to the object p
+    </pre>
+    <button onclick="showThis()">Run Demo</button>
+    <div class="output" id="thisOutput"></div>
+  </div>
+
+  <!-- 2. call() and apply() -->
+  <div class="section-card">
+    <h2>2. call() and apply()</h2>
+    <pre>
+function introduce(city, country) {
+  return this.name + " is from " + city + ", " + country;
+}
+
+var person1 = { name: "Priya" };
+var person2 = { name: "Arjun" };
+
+// call() - arguments passed one by one
+introduce.call(person1, "Mumbai", "India");
+
+// apply() - arguments passed as an array
+introduce.apply(person2, ["Delhi", "India"]);
+    </pre>
+    <button onclick="showCallApply()">Run Demo</button>
+    <div class="output" id="callApplyOutput"></div>
+  </div>
+
+  <!-- 3. Counter Function (Closure) -->
+  <div class="section-card">
+    <h2>3. Counter Function (Closure)</h2>
+    <pre>
+function makeCounter() {
+  var count = 0; // private variable
+
+  return {
+    increment: function() { count++; },
+    decrement: function() { count--; },
+    getCount: function() { return count; }
+  };
+}
+
+var counter = makeCounter();
+counter.increment();
+counter.increment();
+counter.decrement();
+counter.getCount(); // returns 1
+    </pre>
+    <button onclick="incrementCounter()">Increment</button>
+    <button onclick="decrementCounter()">Decrement</button>
+    <button onclick="resetCounter()">Reset</button>
+    <div class="output" id="counterOutput">Count: 0</div>
+  </div>
+
+  <!-- 4. Getter and Setter -->
+  <div class="section-card">
+    <h2>4. Getter and Setter</h2>
+    <pre>
+var student = {
+  _name: "",
+  get name() {
+    return this._name;
+  },
+  set name(value) {
+    if (value.trim() === "") {
+      console.log("Name cannot be empty!");
+    } else {
+      this._name = value;
+    }
+  }
+};
+
+student.name = "Rahul"; // uses setter
+console.log(student.name); // uses getter
+    </pre>
+    <button onclick="showGetterSetter()">Run Demo</button>
+    <div class="output" id="getterOutput"></div>
+  </div>
+
+  <!-- 5. Prototype -->
+  <div class="section-card">
+    <h2>5. Prototype</h2>
+    <pre>
+function Animal(name) {
+  this.name = name;
+}
+
+// Adding a method using prototype
+Animal.prototype.speak = function() {
+  return this.name + " makes a sound.";
+};
+
+// All Animal objects share this method via prototype
+var dog = new Animal("Dog");
+var cat = new Animal("Cat");
+
+dog.speak(); // "Dog makes a sound."
+cat.speak(); // "Cat makes a sound."
+    </pre>
+    <button onclick="showPrototype()">Run Demo</button>
+    <div class="output" id="protoOutput"></div>
+  </div>
+
+  <p><a href="../index.html">← Back to Home</a></p>
+
+  <script>
+    // 1. this keyword
+    function Person(name, age) {
+      this.name = name;
+      this.age = age;
+      this.greet = function() {
+        return "Hi, I am " + this.name + " and I am " + this.age + " years old.";
+      };
+    }
+
+    function showThis() {
+      var p = new Person("Alice", 22);
+      var q = new Person("Bob", 25);
+      document.getElementById("thisOutput").textContent =
+        p.greet() + "\n" + q.greet() + "\n\n'this' refers to the specific object calling the method.";
+    }
+
+    // 2. call() and apply()
+    function introduce(city, country) {
+      return this.name + " is from " + city + ", " + country;
+    }
+
+    function showCallApply() {
+      var person1 = { name: "Priya" };
+      var person2 = { name: "Arjun" };
+
+      var callResult = introduce.call(person1, "Mumbai", "India");
+      var applyResult = introduce.apply(person2, ["Delhi", "India"]);
+
+      document.getElementById("callApplyOutput").textContent =
+        "call():  " + callResult + "\napply(): " + applyResult +
+        "\n\ncall() and apply() both set 'this', but call takes args one by one, apply takes an array.";
+    }
+
+    // 3. Counter with closure
+    function makeCounter() {
+      var count = 0;
+      return {
+        increment: function() { count++; },
+        decrement: function() { count--; },
+        reset: function() { count = 0; },
+        getCount: function() { return count; }
+      };
+    }
+
+    var myCounter = makeCounter();
+
+    function incrementCounter() {
+      myCounter.increment();
+      document.getElementById("counterOutput").textContent = "Count: " + myCounter.getCount();
+    }
+    function decrementCounter() {
+      myCounter.decrement();
+      document.getElementById("counterOutput").textContent = "Count: " + myCounter.getCount();
+    }
+    function resetCounter() {
+      myCounter.reset();
+      document.getElementById("counterOutput").textContent = "Count: " + myCounter.getCount();
+    }
+
+    // 4. Getter and Setter
+    function showGetterSetter() {
+      var student = {
+        _name: "",
+        get name() {
+          return this._name;
+        },
+        set name(value) {
+          if (value.trim() === "") {
+            this._name = "(error: empty name)";
+          } else {
+            this._name = value;
+          }
+        }
+      };
+
+      var output = "";
+      student.name = "Rahul"; // setter
+      output += "After student.name = 'Rahul'\n";
+      output += "student.name (getter) = " + student.name + "\n\n";
+
+      student.name = ""; // setter with empty string
+      output += "After student.name = '' (empty)\n";
+      output += "student.name = " + student.name;
+
+      document.getElementById("getterOutput").textContent = output;
+    }
+
+    // 5. Prototype
+    function Animal(name) {
+      this.name = name;
+    }
+    Animal.prototype.speak = function() {
+      return this.name + " makes a sound.";
+    };
+    Animal.prototype.describe = function() {
+      return this.name + " is an animal.";
+    };
+
+    function showPrototype() {
+      var dog = new Animal("Dog");
+      var cat = new Animal("Cat");
+      var cow = new Animal("Cow");
+
+      var output = dog.speak() + "\n" + cat.speak() + "\n" + cow.speak() + "\n";
+      output += "\n" + dog.describe() + "\n";
+      output += "\nAll three objects share speak() and describe() methods via prototype.\n";
+      output += "hasOwnProperty('name'): " + dog.hasOwnProperty("name");
+      output += "\nhasOwnProperty('speak'): " + dog.hasOwnProperty("speak") + " (it's on prototype, not own)";
+
+      document.getElementById("protoOutput").textContent = output;
+    }
+  </script>
+</body>
+</html>

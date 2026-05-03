@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>HTML Forms</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 30px; background: #f9f9f9; color: #333; }
+    h1 { color: #2c5f8a; }
+    h2 { color: #3a7abf; border-bottom: 2px solid #ccc; padding-bottom: 4px; }
+    form { background: white; padding: 20px; border: 1px solid #ddd; border-radius: 6px; max-width: 500px; }
+    label { display: block; margin-top: 12px; font-weight: bold; }
+    input[type="text"], input[type="password"], input[type="email"], input[type="date"], input[type="file"], select {
+      width: 100%;
+      padding: 8px;
+      margin-top: 4px;
+      border: 1px solid #bbb;
+      border-radius: 4px;
+      box-sizing: border-box;
+    }
+    input[type="range"] { width: 100%; }
+    input[type="submit"] {
+      margin-top: 16px;
+      background: #2c5f8a;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    input[type="submit"]:hover { background: #1e4a70; }
+    .radio-group label, .checkbox-group label { display: inline; font-weight: normal; margin-left: 5px; }
+    .section-box { background: white; padding: 20px; border: 1px solid #ddd; border-radius: 6px; margin-top: 20px; }
+  </style>
+</head>
+<body>
+
+  <h1>HTML Forms</h1>
+  <p>A complete form showing all common input types.</p>
+
+  <form action="#" method="get">
+
+    <label for="username">Name (Textbox):</label>
+    <input type="text" id="username" name="username" placeholder="Enter your name" required />
+
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="password" placeholder="Enter password" required />
+
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" placeholder="you@example.com" required />
+
+    <label for="dob">Date of Birth:</label>
+    <input type="date" id="dob" name="dob" min="1980-01-01" max="2010-12-31" required />
+
+    <label>Gender (Radio Buttons):</label>
+    <div class="radio-group">
+      <input type="radio" name="gender" value="male" id="male" />
+      <label for="male">Male</label>
+      &nbsp;&nbsp;
+      <input type="radio" name="gender" value="female" id="female" />
+      <label for="female">Female</label>
+      &nbsp;&nbsp;
+      <input type="radio" name="gender" value="other" id="other" />
+      <label for="other">Other</label>
+    </div>
+
+    <label>Interests (Checkboxes):</label>
+    <div class="checkbox-group">
+      <input type="checkbox" name="interest" value="coding" id="coding" />
+      <label for="coding">Coding</label>
+      &nbsp;&nbsp;
+      <input type="checkbox" name="interest" value="music" id="music" />
+      <label for="music">Music</label>
+      &nbsp;&nbsp;
+      <input type="checkbox" name="interest" value="sports" id="sports" />
+      <label for="sports">Sports</label>
+    </div>
+
+    <label for="rating">Rating (Range: 1–10):</label>
+    <input type="range" id="rating" name="rating" min="1" max="10" value="5" />
+    <p>Selected value: <span id="rangeVal">5</span></p>
+
+    <label for="resume">Upload File:</label>
+    <input type="file" id="resume" name="resume" />
+
+    <input type="submit" value="Submit Form" />
+  </form>
+
+  <!-- Marquee and iframe -->
+  <div class="section-box">
+    <h2>Marquee</h2>
+    <marquee behavior="scroll" direction="left" style="color: #2c5f8a; font-weight: bold;">
+      Welcome to HTML Forms Assignment! Scroll through this marquee text.
+    </marquee>
+  </div>
+
+  <div class="section-box">
+    <h2>iFrame – Embedding a Website</h2>
+    <iframe
+      src="https://www.wikipedia.org"
+      width="100%"
+      height="300"
+      title="Wikipedia"
+      style="border: 2px solid #2c5f8a; border-radius: 4px;">
+    </iframe>
+  </div>
+
+  <p><a href="../index.html">← Back to Home</a></p>
+
+  <script>
+    // Show live range value
+    var rangeInput = document.getElementById("rating");
+    var rangeDisplay = document.getElementById("rangeVal");
+    rangeInput.addEventListener("input", function() {
+      rangeDisplay.textContent = this.value;
+    });
+  </script>
+</body>
+</html>

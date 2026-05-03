@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>JS Advanced</title>
+</head>
+
+<body>
+
+<h1>JavaScript Advanced</h1>
+
+<script>
+// this keyword
+var person = {
+    name: "Ravi",
+    show: function() {
+        console.log(this.name);
+    }
+};
+person.show();
+
+// call and apply
+function greet(city) {
+    console.log(this.name + " from " + city);
+}
+var p = {name:"Kumar"};
+
+greet.call(p, "Chennai");
+greet.apply(p, ["Madurai"]);
+
+// counter (closure)
+function counter() {
+    var count = 0;
+    return function() {
+        count++;
+        console.log(count);
+    }
+}
+var c = counter();
+c();
+c();
+
+// getter and setter
+var student = {
+    firstName: "John",
+    lastName: "Doe",
+    get fullName() {
+        return this.firstName + " " + this.lastName;
+    }
+};
+console.log(student.fullName);
+
+// prototype
+function Person(name) {
+    this.name = name;
+}
+Person.prototype.say = function() {
+    console.log("Hello " + this.name);
+};
+
+var obj = new Person("Sam");
+obj.say();
+
+</script>
+
+</body>
+</html>

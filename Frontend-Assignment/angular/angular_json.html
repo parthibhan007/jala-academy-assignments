@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+    <title>Angular JSON</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+</head>
+
+<body ng-controller="myCtrl">
+
+<h1>Angular JSON Table</h1>
+
+<h2>Sorting</h2>
+<select ng-model="order">
+    <option value="name">Name</option>
+</select>
+
+<table border="1">
+<tr>
+    <th>Index</th>
+    <th>Name</th>
+</tr>
+
+<tr ng-repeat="x in data | orderBy:order">
+    <td>{{$index}}</td>
+    <td>{{x.name}}</td>
+</tr>
+</table>
+
+<h2>ng-options</h2>
+<select ng-model="selected" ng-options="x.name for x in data"></select>
+
+<script>
+var app = angular.module("myApp", []);
+app.controller("myCtrl", function($scope) {
+    $scope.data = [
+        {name:"A"},
+        {name:"B"},
+        {name:"C"}
+    ];
+});
+</script>
+
+</body>
+</html>

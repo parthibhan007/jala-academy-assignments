@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CSS Layout</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f4f4;
+      color: #333;
+    }
+
+    h1 { color: #1e4a70; text-align: center; padding: 20px; }
+    h2 { color: #2c5f8a; margin-bottom: 10px; border-bottom: 2px solid #aaccee; padding-bottom: 5px; }
+
+    .section-card {
+      background: white;
+      padding: 20px;
+      margin: 20px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+    }
+
+    /* Hero image section */
+    .hero {
+      background-image: url('https://images.pexels.com/photos/574071/pexels-photo-574071.jpeg');
+      background-size: cover;
+      background-position: center;
+      height: 300px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      text-align: center;
+    }
+    .hero h2 {
+      font-size: 36px;
+      border: none;
+      color: white;
+      text-shadow: 2px 2px 6px black;
+    }
+    .hero p {
+      font-size: 18px;
+      text-shadow: 1px 1px 4px black;
+      margin-top: 8px;
+    }
+
+    /* Table layout fixed and auto */
+    .fixed-table { table-layout: fixed; width: 100%; border-collapse: collapse; }
+    .auto-table { table-layout: auto; width: 100%; border-collapse: collapse; }
+    table th { background: #2c5f8a; color: white; padding: 10px; }
+    table td { padding: 8px; border: 1px solid #ddd; }
+    tr:nth-child(even) { background: #f0f6ff; }
+
+    /* CSS Lists */
+    .list-disc { list-style-type: disc; }
+    .list-circle { list-style-type: circle; }
+    .list-square { list-style-type: square; }
+    .list-decimal { list-style-type: decimal; }
+    .list-roman { list-style-type: upper-roman; }
+    .list-alpha { list-style-type: lower-alpha; }
+    .list-none { list-style-type: none; padding-left: 0; }
+
+    /* CSS Grid layouts */
+    .grid-2col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+    .grid-3col {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 10px;
+    }
+    .grid-asymmetric {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 10px;
+    }
+    .grid-cell {
+      background: #d0e8ff;
+      padding: 15px;
+      text-align: center;
+      border-radius: 4px;
+      font-weight: bold;
+    }
+
+    /* Responsive video */
+    .responsive-video {
+      width: 100%;
+      max-width: 560px;
+      aspect-ratio: 16 / 9;
+      border: 2px solid #2c5f8a;
+      border-radius: 6px;
+    }
+
+    /* Responsive image */
+    .responsive-img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 6px;
+      border: 2px solid #2c5f8a;
+    }
+
+    /* Media queries */
+    @media (max-width: 768px) {
+      .grid-3col { grid-template-columns: 1fr 1fr; }
+      .grid-2col { grid-template-columns: 1fr; }
+      .grid-asymmetric { grid-template-columns: 1fr; }
+      .hero h2 { font-size: 24px; }
+    }
+
+    @media (max-width: 480px) {
+      .grid-3col { grid-template-columns: 1fr; }
+      h1 { font-size: 22px; }
+    }
+  </style>
+</head>
+<body>
+
+  <h1>CSS Layout & Compatibility</h1>
+
+  <!-- Hero Section -->
+  <div class="hero">
+    <div>
+      <h2>Hero Image Section</h2>
+      <p>Full-width background image with centered text overlay</p>
+    </div>
+  </div>
+
+  <!-- Tables -->
+  <div class="section-card">
+    <h2>Table with Fixed Layout</h2>
+    <p style="margin-bottom:8px;">table-layout: fixed – columns have equal fixed width</p>
+    <table class="fixed-table">
+      <tr>
+        <th>Column 1</th>
+        <th>Column 2 (longer header)</th>
+        <th>Col 3</th>
+      </tr>
+      <tr>
+        <td>HTML</td>
+        <td>Hypertext Markup Language</td>
+        <td>Web</td>
+      </tr>
+      <tr>
+        <td>CSS</td>
+        <td>Cascading Style Sheets</td>
+        <td>Style</td>
+      </tr>
+    </table>
+
+    <h2 style="margin-top:20px;">Table with Auto Layout</h2>
+    <p style="margin-bottom:8px;">table-layout: auto – columns adjust to content</p>
+    <table class="auto-table">
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Type</th>
+      </tr>
+      <tr>
+        <td>JS</td>
+        <td>JavaScript – scripting language for the web</td>
+        <td>Script</td>
+      </tr>
+      <tr>
+        <td>Angular</td>
+        <td>Front-end framework</td>
+        <td>Framework</td>
+      </tr>
+    </table>
+  </div>
+
+  <!-- List styles -->
+  <div class="section-card">
+    <h2>CSS List Style Types</h2>
+    <div class="grid-3col">
+      <div>
+        <strong>disc (default)</strong>
+        <ul class="list-disc"><li>HTML</li><li>CSS</li><li>JS</li></ul>
+      </div>
+      <div>
+        <strong>circle</strong>
+        <ul class="list-circle"><li>HTML</li><li>CSS</li><li>JS</li></ul>
+      </div>
+      <div>
+        <strong>square</strong>
+        <ul class="list-square"><li>HTML</li><li>CSS</li><li>JS</li></ul>
+      </div>
+      <div>
+        <strong>decimal</strong>
+        <ol class="list-decimal"><li>HTML</li><li>CSS</li><li>JS</li></ol>
+      </div>
+      <div>
+        <strong>upper-roman</strong>
+        <ol class="list-roman"><li>HTML</li><li>CSS</li><li>JS</li></ol>
+      </div>
+      <div>
+        <strong>lower-alpha</strong>
+        <ol class="list-alpha"><li>HTML</li><li>CSS</li><li>JS</li></ol>
+      </div>
+    </div>
+  </div>
+
+  <!-- CSS Grid -->
+  <div class="section-card">
+    <h2>CSS Grid Layouts</h2>
+
+    <p><strong>2-column grid:</strong></p>
+    <div class="grid-2col" style="margin-bottom:15px;">
+      <div class="grid-cell">Cell 1</div>
+      <div class="grid-cell">Cell 2</div>
+      <div class="grid-cell">Cell 3</div>
+      <div class="grid-cell">Cell 4</div>
+    </div>
+
+    <p><strong>3-column grid:</strong></p>
+    <div class="grid-3col" style="margin-bottom:15px;">
+      <div class="grid-cell">Cell 1</div>
+      <div class="grid-cell">Cell 2</div>
+      <div class="grid-cell">Cell 3</div>
+    </div>
+
+    <p><strong>Asymmetric grid (2fr + 1fr):</strong></p>
+    <div class="grid-asymmetric">
+      <div class="grid-cell">Main Content (2fr)</div>
+      <div class="grid-cell">Sidebar (1fr)</div>
+    </div>
+  </div>
+
+  <!-- Responsive Image and Video -->
+  <div class="section-card">
+    <h2>Responsive Image</h2>
+    <img class="responsive-img"
+         src="https://images.pexels.com/photos/270360/pexels-photo-270360.jpeg?w=600"
+         alt="Responsive web design" />
+
+    <h2 style="margin-top:20px;">Responsive Video (iframe)</h2>
+    <iframe class="responsive-video"
+      src="https://www.youtube.com/embed/UB1O30fR-EE"
+      title="HTML CSS JS Tutorial"
+      frameborder="0"
+      allowfullscreen>
+    </iframe>
+  </div>
+
+  <!-- Media Query Info Box -->
+  <div class="section-card">
+    <h2>Media Queries (Viewport)</h2>
+    <p>This page uses <strong>meta viewport</strong> and <strong>@media queries</strong> for responsiveness.</p>
+    <p>Resize the browser window to see the grid layout change:</p>
+    <ul style="margin-top:8px; padding-left:20px;">
+      <li>Below 768px: 3-column grid becomes 2-column</li>
+      <li>Below 480px: All grids become 1-column</li>
+    </ul>
+  </div>
+
+  <div style="text-align:center; padding: 20px;">
+    <a href="../index.html" style="color: #2c5f8a; font-weight: bold;">← Back to Home</a>
+  </div>
+
+</body>
+</html>

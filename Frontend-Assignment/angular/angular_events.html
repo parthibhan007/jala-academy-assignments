@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+    <title>Angular Events</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+</head>
+
+<body ng-controller="myCtrl">
+
+<h1>Angular Events</h1>
+
+<button ng-click="show()">Click Me</button>
+<p ng-show="visible">Button clicked!</p>
+
+<br>
+
+<input type="text" ng-disabled="disable">
+<button ng-click="disableInput()">Disable Input</button>
+
+<br><br>
+
+<div ng-mousemove="move($event)" style="border:1px solid; height:100px;">
+    Move mouse here
+</div>
+
+<p>X: {{x}} Y: {{y}}</p>
+
+<script>
+var app = angular.module("myApp", []);
+app.controller("myCtrl", function($scope) {
+
+    $scope.visible = false;
+    $scope.disable = false;
+
+    $scope.show = function() {
+        $scope.visible = true;
+    };
+
+    $scope.disableInput = function() {
+        $scope.disable = true;
+    };
+
+    $scope.move = function(event) {
+        $scope.x = event.clientX;
+        $scope.y = event.clientY;
+    };
+});
+</script>
+
+</body>
+</html>

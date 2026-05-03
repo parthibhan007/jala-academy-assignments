@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>CSS Effects</title>
+    <style>
+        .box {
+            width:100px;
+            height:100px;
+            background:blue;
+            box-shadow:5px 5px 10px gray;
+        }
+
+        .box:hover {
+            background:red;
+        }
+
+        img {
+            opacity:0.5;
+        }
+
+        img:hover {
+            opacity:1;
+        }
+
+        .animate {
+            width:100px;
+            height:100px;
+            background:red;
+            animation: move 2s infinite;
+        }
+
+        @keyframes move {
+            from { margin-left:0; }
+            to { margin-left:200px; }
+        }
+    </style>
+</head>
+
+<body>
+
+<h1>CSS Effects</h1>
+
+<div class="box"></div>
+
+<br>
+
+<img src="https://via.placeholder.com/150">
+
+<h2>Animation</h2>
+<div class="animate"></div>
+
+<h2>Position</h2>
+<div style="position:relative; left:20px;">Relative</div>
+<div style="position:absolute; top:50px;">Absolute</div>
+
+<h2>Overflow</h2>
+<div style="width:150px; height:50px; overflow:scroll; border:1px solid;">
+    This is long content inside a box to show scroll behavior.
+</div>
+
+</body>
+</html>

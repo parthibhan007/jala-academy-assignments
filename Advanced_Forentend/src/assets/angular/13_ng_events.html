@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="eventsApp">
+<head>
+  <meta charset="UTF-8" />
+  <title>AngularJS Events</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 30px; background: #f4f4f4; color: #333; }
+    h1 { color: #1e4a70; }
+    h2 { color: #2c5f8a; border-bottom: 2px solid #aaccee; padding-bottom: 5px; }
+    .section-card { background: white; padding: 20px; margin: 20px 0; border: 1px solid #ccc; border-radius: 8px; }
+    .output-box { background: #e8f4fc; padding: 12px; border-left: 4px solid #2c5f8a; border-radius: 4px; margin-top: 10px; min-height: 40px; }
+    button {
+      background: #2c5f8a; color: white;
+      padding: 9px 18px; border: none; border-radius: 4px; cursor: pointer;
+      margin: 5px 5px 0 0;
+    }
+    button:hover { background: #1e4a70; }
+    button:disabled { background: #aaa; cursor: not-allowed; }
+    pre {
+      background: #1e1e1e; color: #dcdcdc;
+      padding: 15px; border-radius: 6px;
+      font-family: 'Courier New', monospace;
+      font-size: 14px; overflow-x: auto;
+    }
+    .mouse-tracker {
+      background: #f0f6ff;
+      border: 2px dashed #2c5f8a;
+      border-radius: 8px;
+      height: 120px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      font-weight: bold;
+      color: #2c5f8a;
+      cursor: crosshair;
+      margin-top: 10px;
+    }
+    .toggle-box {
+      background: #d0e8ff;
+      padding: 20px;
+      border-radius: 6px;
+      margin-top: 10px;
+      text-align: center;
+      font-size: 18px;
+      font-weight: bold;
+      color: #1e4a70;
+    }
+    input[type="text"] {
+      padding: 8px; border: 1px solid #ccc;
+      border-radius: 4px; width: 220px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>AngularJS Events</h1>
+
+  <!-- ng-click -->
+  <div class="section-card" ng-controller="ClickCtrl">
+    <h2>1. ng-click with $event object</h2>
+    <pre>
+&lt;button ng-click="handleClick($event)"&gt;Click Me&lt;/button&gt;
+
+$scope.handleClick = function($event) {
+  $scope.msg = "Clicked at X: " + $event.clientX;
+};
+    </pre>
+    <button ng-click="handleClick($event)">Click Me</button>
+    <button ng-click="counter = counter + 1">Clicked {{ counter }} times</button>
+    <button ng-click="resetCounter()">Reset</button>
+    <div class="output-box">{{ msg || "Click the button to see event details" }}</div>
+  </div>
+
+  <!-- ng-mousemove -->
+  <div class="section-card" ng-controller="MouseCtrl">
+    <h2>2. ng-mousemove with $event</h2>
+    <pre>
+&lt;div ng-mousemove="trackMouse($event)"&gt;
+  Move mouse here
+&lt;/div&gt;
+    </pre>
+    <div class="mouse-tracker" ng-mousemove="trackMouse($event)">
+      Move your mouse here | X: {{ mouseX }}, Y: {{ mouseY }}
+    </div>
+  </div>
+
+  <!-- ng-show, ng-hide, ng-disabled -->
+  <div class="section-card" ng-controller="ShowHideCtrl">
+    <h2>3. ng-show, ng-hide, ng-disabled</h2>
+    <pre>
+&lt;div ng-show="isVisible"&gt;Visible!&lt;/div&gt;
+&lt;div ng-hide="isVisible"&gt;Hidden!&lt;/div&gt;
+&lt;button ng-disabled="isDisabled"&gt;Action&lt;/button&gt;
+    </pre>
+
+    <div style="margin-bottom:10px;">
+      <button ng-click="isVisible = !isVisible">Toggle Show/Hide</button>
+      <button ng-click="isDisabled = !isDisabled">Toggle Disable</button>
+    </div>
+
+    <div class="toggle-box" ng-show="isVisible">
+      This element uses ng-show (visible when isVisible = true)
+    </div>
+    <div class="toggle-box" ng-hide="isVisible"
+         style="background:#ffe0cc; color:#a03000;">
+      This element uses ng-hide (shows when isVisible = false)
+    </div>
+
+    <div style="margin-top: 14px;">
+      <input type="text" ng-model="inputText" ng-disabled="isDisabled"
+             placeholder="Type here..." />
+      <button ng-disabled="isDisabled" style="margin-left:8px;">
+        Submit (disabled when toggled)
+      </button>
+      <p style="font-size:13px; color:#666; margin-top:6px;">
+        isDisabled = {{ isDisabled }} | isVisible = {{ isVisible }}
+      </p>
+    </div>
+  </div>
+
+  <!-- MySQL info box -->
+  <div class="section-card">
+    <h2>About DOM, Events, and MySQL</h2>
+    <div style="display:grid; grid-template-columns: 1fr 1fr 1fr; gap:15px; flex-wrap:wrap;">
+      <div style="background:#e8f4fc; padding:15px; border-radius:6px;">
+        <h3 style="color:#2c5f8a; margin-top:0;">DOM</h3>
+        <p>The Document Object Model is a tree structure of all HTML elements. JavaScript and AngularJS can read and modify it.</p>
+      </div>
+      <div style="background:#fff3e0; padding:15px; border-radius:6px;">
+        <h3 style="color:#c07000; margin-top:0;">Events</h3>
+        <p>Events are actions triggered by users (click, hover, input). AngularJS handles them with directives like ng-click and ng-mousemove.</p>
+      </div>
+      <div style="background:#d4f5d4; padding:15px; border-radius:6px;">
+        <h3 style="color:#2a6b2a; margin-top:0;">MySQL</h3>
+        <p>MySQL is a relational database. It stores data in tables. Frontend apps call a backend API (like PHP/Node.js) which queries MySQL.</p>
+      </div>
+    </div>
+  </div>
+
+  <p><a href="../index.html">← Back to Home</a></p>
+
+  <script>
+    var app = angular.module("eventsApp", []);
+
+    // 1. Click controller
+    app.controller("ClickCtrl", function($scope) {
+      $scope.counter = 0;
+      $scope.msg = "";
+      $scope.handleClick = function($event) {
+        $scope.counter++;
+        $scope.msg = "Clicked at X: " + $event.clientX + ", Y: " + $event.clientY +
+          " | Total clicks: " + $scope.counter;
+      };
+      $scope.resetCounter = function() {
+        $scope.counter = 0;
+        $scope.msg = "Counter reset to 0.";
+      };
+    });
+
+    // 2. Mouse move controller
+    app.controller("MouseCtrl", function($scope) {
+      $scope.mouseX = 0;
+      $scope.mouseY = 0;
+      $scope.trackMouse = function($event) {
+        $scope.mouseX = $event.clientX;
+        $scope.mouseY = $event.clientY;
+      };
+    });
+
+    // 3. Show/hide/disable controller
+    app.controller("ShowHideCtrl", function($scope) {
+      $scope.isVisible = true;
+      $scope.isDisabled = false;
+      $scope.inputText = "";
+    });
+  </script>
+
+</body>
+</html>

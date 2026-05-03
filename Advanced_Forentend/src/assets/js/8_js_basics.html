@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>JavaScript Basics</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 30px; background: #f4f4f4; color: #333; }
+    h1 { color: #1e4a70; }
+    h2 { color: #2c5f8a; border-bottom: 2px solid #aaccee; padding-bottom: 5px; }
+    .section-card { background: white; padding: 20px; margin: 20px 0; border: 1px solid #ccc; border-radius: 8px; }
+    pre {
+      background: #1e1e1e;
+      color: #dcdcdc;
+      padding: 15px;
+      border-radius: 6px;
+      font-family: 'Courier New', monospace;
+      font-size: 14px;
+      overflow-x: auto;
+    }
+    .output {
+      background: #e8f4fc;
+      padding: 12px;
+      border-left: 4px solid #2c5f8a;
+      border-radius: 4px;
+      margin-top: 10px;
+      font-family: 'Courier New', monospace;
+    }
+    button {
+      background: #2c5f8a;
+      color: white;
+      padding: 8px 18px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      margin-top: 8px;
+    }
+    button:hover { background: #1e4a70; }
+  </style>
+</head>
+<body>
+
+  <h1>JavaScript Basics</h1>
+
+  <!-- 1. Comments -->
+  <div class="section-card">
+    <h2>1. Comments in JavaScript</h2>
+    <pre>
+// This is a single-line comment
+
+/*
+  This is a
+  multi-line comment
+*/
+
+var name = "Alice"; // inline comment
+    </pre>
+    <div class="output" id="commentOutput"></div>
+    <button onclick="showComments()">Run Comments Demo</button>
+  </div>
+
+  <!-- 2. Array Sorting -->
+  <div class="section-card">
+    <h2>2. Array Sorting</h2>
+    <pre>
+var fruits = ["Mango", "Apple", "Banana", "Cherry"];
+fruits.sort(); // alphabetical sort
+
+var numbers = [40, 10, 30, 20, 5];
+numbers.sort(function(a, b) { return a - b; }); // numeric sort
+    </pre>
+    <div class="output" id="sortOutput"></div>
+    <button onclick="showSort()">Run Sort Demo</button>
+  </div>
+
+  <!-- 3. for/in loop -->
+  <div class="section-card">
+    <h2>3. for/in Loop</h2>
+    <pre>
+var person = {
+  name: "Alice",
+  age: 22,
+  course: "Computer Science"
+};
+
+for (var key in person) {
+  console.log(key + ": " + person[key]);
+}
+    </pre>
+    <div class="output" id="forInOutput"></div>
+    <button onclick="showForIn()">Run for/in Demo</button>
+  </div>
+
+  <!-- 4. Object Property Access -->
+  <div class="section-card">
+    <h2>4. Object Property Access</h2>
+    <pre>
+var student = {
+  name: "Priya",
+  age: 20,
+  grade: "A"
+};
+
+// Dot notation
+console.log(student.name);
+
+// Bracket notation
+console.log(student["age"]);
+    </pre>
+    <div class="output" id="objectOutput"></div>
+    <button onclick="showObjectAccess()">Run Object Demo</button>
+  </div>
+
+  <!-- 5. Hoisting -->
+  <div class="section-card">
+    <h2>5. Hoisting</h2>
+    <pre>
+// Even though greet() is called BEFORE it is defined,
+// it works because function declarations are hoisted.
+
+greet(); // works! Output: Hello from hoisted function
+
+function greet() {
+  console.log("Hello from hoisted function");
+}
+
+// Variable hoisting with var:
+console.log(x); // Output: undefined (not an error)
+var x = 10;
+console.log(x); // Output: 10
+    </pre>
+    <div class="output" id="hoistOutput"></div>
+    <button onclick="showHoisting()">Run Hoisting Demo</button>
+  </div>
+
+  <!-- 6. Strict Mode -->
+  <div class="section-card">
+    <h2>6. Strict Mode</h2>
+    <pre>
+"use strict";
+
+// In strict mode:
+// - Variables must be declared before use
+// - Duplicate parameter names not allowed
+// - 'this' is undefined in standalone functions
+
+function strictDemo() {
+  "use strict";
+  var message = "Strict mode is ON";
+  return message;
+}
+    </pre>
+    <div class="output" id="strictOutput"></div>
+    <button onclick="showStrictMode()">Run Strict Mode Demo</button>
+  </div>
+
+  <p><a href="../index.html">← Back to Home</a></p>
+
+  <script>
+    // 1. Comments
+    function showComments() {
+      // This is a single-line comment
+      /* This is a multi-line comment */
+      var text = "Comments don't produce output, but they explain code.";
+      document.getElementById("commentOutput").textContent = "Output: " + text;
+    }
+
+    // 2. Array Sorting
+    function showSort() {
+      var fruits = ["Mango", "Apple", "Banana", "Cherry"];
+      fruits.sort();
+
+      var numbers = [40, 10, 30, 20, 5];
+      numbers.sort(function(a, b) { return a - b; });
+
+      var output = "Sorted fruits: " + fruits.join(", ") + "\n";
+      output += "Sorted numbers: " + numbers.join(", ");
+      document.getElementById("sortOutput").textContent = output;
+    }
+
+    // 3. for/in loop
+    function showForIn() {
+      var person = { name: "Alice", age: 22, course: "Computer Science" };
+      var result = "";
+      for (var key in person) {
+        result += key + ": " + person[key] + "\n";
+      }
+      document.getElementById("forInOutput").textContent = result;
+    }
+
+    // 4. Object property access
+    function showObjectAccess() {
+      var student = { name: "Priya", age: 20, grade: "A" };
+      var output = "Dot notation — student.name: " + student.name + "\n";
+      output += "Bracket notation — student['age']: " + student["age"] + "\n";
+      output += "student.grade: " + student.grade;
+      document.getElementById("objectOutput").textContent = output;
+    }
+
+    // 5. Hoisting
+    function showHoisting() {
+      // Function hoisting: calling before declaration works
+      var result = hoistedFunc();
+
+      // Variable hoisting with var
+      var hoistedVar; // var is hoisted (declared but undefined)
+      var beforeAssign = "Before: " + hoistedVar; // undefined
+      hoistedVar = "assigned now";
+      var afterAssign = "After: " + hoistedVar;
+
+      document.getElementById("hoistOutput").textContent =
+        result + "\n" + beforeAssign + "\n" + afterAssign;
+    }
+
+    // This function is hoisted to the top
+    function hoistedFunc() {
+      return "Function hoisting works! Called before definition.";
+    }
+
+    // 6. Strict Mode
+    function showStrictMode() {
+      "use strict";
+      var message = "Strict mode is ON. Variables must be declared. No duplicate params.";
+      document.getElementById("strictOutput").textContent = message;
+    }
+  </script>
+</body>
+</html>

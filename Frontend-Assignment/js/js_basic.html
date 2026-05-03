@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>JS Basics</title>
+</head>
+
+<body>
+
+<h1>JavaScript Basics</h1>
+
+<script>
+// single line comment
+/* multi line comment */
+
+// array sorting
+var arr = [5,2,9,1];
+arr.sort();
+console.log("Sorted array:", arr);
+
+// for-in loop
+var obj = {name:"Parthi", age:22};
+for(var key in obj){
+    console.log(key + " = " + obj[key]);
+}
+
+// object access
+console.log(obj.name);
+
+// hoisting example
+x = 10;
+console.log(x);
+var x;
+
+// strict mode
+"use strict";
+var a = 5;
+console.log(a);
+
+</script>
+
+</body>
+</html>

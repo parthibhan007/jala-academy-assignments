@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>CSS Advanced</title>
+  <style>
+    * { box-sizing: border-box; }
+
+    /* Smooth scrolling for the whole page */
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f4f4;
+      color: #333;
+    }
+
+    h1 { color: #1e4a70; text-align: center; padding: 20px; }
+    h2 { color: #2c5f8a; border-bottom: 2px solid #aaccee; padding-bottom: 5px; margin-bottom: 12px; }
+
+    nav {
+      background: #2c5f8a;
+      padding: 12px 20px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    nav a {
+      color: white;
+      margin-right: 15px;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 15px;
+    }
+    nav a:hover { color: orange; }
+
+    .section-card {
+      background: white;
+      padding: 20px;
+      margin: 20px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+    }
+
+    /* display vs visibility */
+    .display-demo, .visibility-demo {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 10px;
+    }
+    .box {
+      background: #2c5f8a;
+      color: white;
+      padding: 15px 20px;
+      border-radius: 4px;
+      font-weight: bold;
+    }
+    .box-hidden-display { display: none; }
+    .box-hidden-visibility { visibility: hidden; }
+
+    /* Padding and Margin demo */
+    .margin-demo {
+      background: #ffd9a0;
+      padding: 20px;
+      margin: 30px;
+      border: 2px solid orange;
+      border-radius: 4px;
+      text-align: center;
+    }
+    .padding-demo {
+      background: #d0e8ff;
+      padding: 30px;
+      margin: 10px;
+      border: 2px solid #2c5f8a;
+      border-radius: 4px;
+      text-align: center;
+    }
+
+    /* Multiple background images */
+    .multi-bg {
+      background-image:
+        url('https://images.pexels.com/photos/531880/pexels-photo-531880.jpeg'),
+        linear-gradient(to right, rgba(44,95,138,0.7), rgba(0,0,0,0.5));
+      background-size: cover, cover;
+      background-blend-mode: overlay;
+      height: 200px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 8px;
+      color: white;
+      font-size: 22px;
+      font-weight: bold;
+      text-align: center;
+      text-shadow: 1px 1px 4px black;
+    }
+
+    /* Box model visual */
+    .box-model-outer {
+      background: #ffd9a0;
+      padding: 20px;
+      border: 4px solid orange;
+      display: inline-block;
+      margin: 10px;
+    }
+    .box-model-inner {
+      background: #d0e8ff;
+      border: 4px solid #2c5f8a;
+      padding: 15px;
+    }
+    .box-model-content {
+      background: #2c5f8a;
+      color: white;
+      padding: 10px;
+      text-align: center;
+    }
+
+    /* Smooth scroll target sections */
+    #section1, #section2, #section3 {
+      padding: 60px 20px 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="#display">Display vs Visibility</a>
+    <a href="#margin">Padding & Margin</a>
+    <a href="#multibg">Multiple Backgrounds</a>
+    <a href="#boxmodel">Box Model</a>
+    <a href="#scroll">Smooth Scroll</a>
+  </nav>
+
+  <h1>CSS Advanced – Page Adjustments</h1>
+
+  <!-- Display vs Visibility -->
+  <div class="section-card" id="display">
+    <h2>display vs visibility</h2>
+    <p><strong>display: none</strong> – The element is completely removed from the layout (takes no space).</p>
+    <p><strong>visibility: hidden</strong> – The element is invisible but still takes up space in the layout.</p>
+
+    <p style="margin-top:12px;"><strong>display: none example:</strong></p>
+    <div class="display-demo">
+      <div class="box">Box 1 (visible)</div>
+      <div class="box box-hidden-display">Box 2 (hidden)</div>
+      <div class="box">Box 3 (visible)</div>
+    </div>
+    <p style="font-size:13px; color:#666;">Box 2 is display:none — it's gone from the layout completely.</p>
+
+    <p style="margin-top:16px;"><strong>visibility: hidden example:</strong></p>
+    <div class="visibility-demo">
+      <div class="box">Box A (visible)</div>
+      <div class="box box-hidden-visibility">Box B (hidden)</div>
+      <div class="box">Box C (visible)</div>
+    </div>
+    <p style="font-size:13px; color:#666;">Box B is visibility:hidden — the gap/space is still there.</p>
+  </div>
+
+  <!-- Padding and Margin -->
+  <div class="section-card" id="margin">
+    <h2>Padding and Margin</h2>
+    <p><strong>Padding</strong> is space inside the element (between content and border).</p>
+    <p><strong>Margin</strong> is space outside the element (between element and neighbors).</p>
+
+    <div class="margin-demo">
+      This div has: <code>margin: 30px; padding: 20px;</code>
+    </div>
+    <div class="padding-demo">
+      This div has extra <code>padding: 30px</code> so the content area feels spacious.
+    </div>
+  </div>
+
+  <!-- Multiple Background Images -->
+  <div class="section-card" id="multibg">
+    <h2>Multiple Background Images</h2>
+    <p>This element uses multiple backgrounds: a photo + a gradient, blended together.</p>
+    <div class="multi-bg">
+      Multiple Backgrounds Combined with background-blend-mode
+    </div>
+  </div>
+
+  <!-- Box Model -->
+  <div class="section-card" id="boxmodel">
+    <h2>CSS Box Model</h2>
+    <p>Every element is a box with: content → padding → border → margin</p>
+    <div class="box-model-outer">
+      <p style="font-size:12px; color:#666;">MARGIN (orange area)</p>
+      <div class="box-model-inner">
+        <p style="font-size:12px; color:#666;">BORDER + PADDING</p>
+        <div class="box-model-content">CONTENT</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Smooth Scrolling -->
+  <div class="section-card" id="scroll">
+    <h2>Smooth Scrolling</h2>
+    <p>The <code>html { scroll-behavior: smooth; }</code> rule makes all anchor link scrolling smooth.</p>
+    <p>Click the nav links above to scroll smoothly to each section.</p>
+
+    <h3 style="margin-top:20px; color:#2c5f8a;">Long Scroll Demo Sections:</h3>
+  </div>
+
+  <div id="section1" style="background: #d0e8ff; margin: 20px; padding: 40px; border-radius:8px;">
+    <h3>Section 1 — Scroll target</h3>
+    <p>You scrolled here smoothly using <code>scroll-behavior: smooth</code>.</p>
+  </div>
+  <div id="section2" style="background: #ffd9a0; margin: 20px; padding: 40px; border-radius:8px;">
+    <h3>Section 2 — Another scroll target</h3>
+    <p>This is section 2. Smooth scrolling makes navigation feel polished.</p>
+  </div>
+  <div id="section3" style="background: #d4f5d4; margin: 20px; padding: 40px; border-radius:8px;">
+    <h3>Section 3 — Final scroll target</h3>
+    <p>End of the smooth scroll demo.</p>
+  </div>
+
+  <div style="text-align:center; padding: 20px;">
+    <a href="../index.html" style="color: #2c5f8a; font-weight: bold;">← Back to Home</a>
+  </div>
+
+</body>
+</html>
